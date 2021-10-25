@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import Nav from './components/Nav'
+import Trending from './components/Trending'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import MoviePage from './components/MoviePage'
 
 function App() {
+  const [config, setConfig] = useState({})
+
+  // Get Configuration on load.
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
+      const res = await data.json()
+      setConfig(res)
+    }
+    fetchData()
+  }, [])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className="bg-black">
+        <Nav />
+        <Route path="/" exact>
+          <Trending config={config} type='movie' text="in Movies" />
+          <Trending config={config} type='tv' text="on TV" />
+        </Route>
+        <Route path="/media/:id/:type" exact>
+          <MoviePage config={config} />
+        </Route>
+      </div>
+    </Router>
+  )
+
 }
 
 export default App;
