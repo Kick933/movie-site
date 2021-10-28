@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Cast from './Cast'
 
+
 function MoviePage(props) {
     const config = props.config
     const param = useParams()
@@ -42,9 +43,9 @@ function MoviePage(props) {
         (
             <>
                 <div className="bg-gray-900">
-                    <div className="flex flex-col p-6 md:flex-row lg:p-20 md:p-10">
-                        <img src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movieDetail.poster_path}`} className="sm:mx-12 m-4 rounded-xl object-fit" alt="movie poster"></img>
-                        <div className="text-left my-4 md:my-12 mx-6 text-white sm:px-10">
+                    <div className="flex flex-col md:flex-row md:justify-center lg:p-20 md:p-10">
+                        <img src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movieDetail.poster_path}`} className=" w-2/3 sm:w-96 mx-auto mt-8 rounded-xl object-fit h-auto" alt="Poster Not Found"></img>
+                        <div className="text-left px-12 my-4 md:my-12 mx-6 sm:mx-auto text-white sm:px-10">
                             <h1 className="font-extrabold antialiased font-sans text-4xl">{movieDetail.title || movieDetail.original_title || movieDetail.original_name}</h1>
                             <p className="text-gray-400 text-lg pb-1">{movieDetail.tagline}</p>
                             <div className="py-0.5">
@@ -54,7 +55,7 @@ function MoviePage(props) {
                             </div>
                             <div className="py-4">
                                 <p className="text-gray-300 text-sm py-1">Overview</p>
-                                <p className="text-lg text-gray-200">{movieDetail.overview}</p>
+                                <p className="text-lg text-gray-200">{movieDetail.overview || "Plot unknown"}</p>
                             </div>
                         </div>
 

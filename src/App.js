@@ -3,6 +3,7 @@ import Nav from './components/Nav'
 import Trending from './components/Trending'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MoviePage from './components/MoviePage'
+import SearchPage from './components/SearchPage'
 
 function App() {
   const [config, setConfig] = useState({})
@@ -20,14 +21,18 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-black">
+      <div className="bg-black min-h-screen">
         <Nav />
         <Route path="/" exact>
           <Trending config={config} type='movie' text="in Movies" />
           <Trending config={config} type='tv' text="on TV" />
+          <Trending config={config} />
         </Route>
         <Route path="/media/:id/:type" exact>
           <MoviePage config={config} />
+        </Route>
+        <Route path="/search/:query" exact>
+          <SearchPage config={config} />
         </Route>
       </div>
     </Router>
