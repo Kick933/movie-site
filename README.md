@@ -1,7 +1,7 @@
 # Movie Site (Powered by TMDB)
 
 Searching for your next watch.
-Come and find your next binge watch [here]().
+Come and find your next binge watch [here](https://moviebykick.netlify.app).
 
 ## Features-:
  - [X] View Plot Overview.
