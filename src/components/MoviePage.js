@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Cast from './Cast'
+import Reviews from './Reviews'
 
 
 function MoviePage(props) {
@@ -38,7 +38,6 @@ function MoviePage(props) {
             console.log(err.message)
         }
     }, [param.id, param.type])
-
     return !movieDetail.success && movieDetail.id && config.images ?
         (
             <>
@@ -46,7 +45,7 @@ function MoviePage(props) {
                     <div className="flex flex-col md:flex-row md:justify-center lg:p-20 md:p-10">
                         <img src={`${config.images.secure_base_url}${config.images.poster_sizes[4]}${movieDetail.poster_path}`} className=" w-2/3 sm:w-96 mx-auto mt-8 rounded-xl object-fit h-auto" alt="Poster Not Found"></img>
                         <div className="text-left px-12 my-4 md:my-12 mx-6 sm:mx-auto text-white sm:px-10">
-                            <h1 className="font-extrabold antialiased font-sans text-4xl">{movieDetail.title || movieDetail.original_title || movieDetail.original_name}</h1>
+                            <h1 className="font-extrabold antialiased font-sans text-4xl">{movieDetail.name || movieDetail.title || movieDetail.original_title || movieDetail.original_name}</h1>
                             <p className="text-gray-400 text-lg pb-1">{movieDetail.tagline}</p>
                             <div className="py-0.5">
                                 <p className="text-xs text-gray-400 py-1">Genre : {movieDetail.genres.map(i => i.name).join(', ')}</p>
@@ -61,9 +60,11 @@ function MoviePage(props) {
 
                     </div>
                 </div>
-                <Cast data={credits} />
+                <Reviews id={movieDetail.id} />
             </>
-        ) : <p>Oh, Something is probably broken.</p>
+        ) : <div className="flex flex-col md:flex-row md:justify-center lg:p-20 md:p-10">
+            <p>Oh, Something is probably broken.</p>
+        </div>
 }
 
 export default MoviePage

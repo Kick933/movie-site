@@ -17,7 +17,7 @@ function SearchPage(props) {
     }, [param.query])
 
     if (movie.results) {
-        return <div className="grid grid-gap-4 grid-flow-row auto-rows-max grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mx-auto">
+        return <div className="grid grid-gap-2 md:grid-gap-4  grid-flow-row auto-rows-max grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mx-auto">
             {movie.results.map(movie =>
                 <MovieCard
                     type="movie"
@@ -25,7 +25,7 @@ function SearchPage(props) {
                     movie={movie}
                     key={v4()} />
             )}
-            <div className="text-white flex items-center justify-center bg-pink-500 text-center w-32 h-32 md:w-52 md:h-72 rounded-xl">
+            <div className="text-white flex items-center justify-center bg-pink-500 text-center w-32 h-32 md:w-52 md:h-72    rounded-xl">
                 <p className="text-xl text-white ">More...</p>
             </div>
         </div>

@@ -23,9 +23,9 @@ function Nav() {
         }
     }
     return (
-        <nav className="w-full min-h-12 bg-gray-700">
+        <nav className="w-full min-h-12 bg-gray-800">
             <ul className="flex justify-between h-12 py-2">
-                <li className="text-gray-200 box-border  ml-8 mr-auto h-4 w-16 text-center hidden sm:block"><a className="text-base block w-32 h-8 mx-auto" href="/">Home</a></li>
+                <li className="text-gray-200 box-border  ml-8 mr-auto h-4 w-16 text-center hidden sm:block"><a className="text-lg block w-32 h-8 mx-auto" href="/">Home</a></li>
                 <li className="text-gray-400 sm:ml-auto sm:mr-8 mx-auto">
                     <form onSubmit={search}>
                         <input

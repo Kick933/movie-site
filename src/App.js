@@ -21,12 +21,13 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-black min-h-screen">
+      <div className="bg-white min-h-screen">
         <Nav />
         <Route path="/" exact>
-          <Trending config={config} type='movie' text="in Movies" />
-          <Trending config={config} type='tv' text="on TV" />
-          <Trending config={config} />
+          <Trending config={config} find="trending" type='movie' text="in Movies" />
+          <Trending config={config} find="trending" type='tv' text="on TV" />
+          <Trending config={config} find="discover" type='movie' text="Movies" />
+          <Trending config={config} find="discover" type="tv" text="Shows" />
         </Route>
         <Route path="/media/:id/:type" exact>
           <MoviePage config={config} />
