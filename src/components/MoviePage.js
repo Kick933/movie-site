@@ -8,7 +8,6 @@ function MoviePage(props) {
     const param = useParams()
 
     const [movieDetail, setMovieDetail] = useState({})
-    const [credits, setCredits] = useState({})
 
     // Get Movie details.
     useEffect(() => {
@@ -26,18 +25,20 @@ function MoviePage(props) {
     }, [param.id, param.type])
 
     // Get Credits & Cast details.
-    useEffect(() => {
-        const fetchData = async () => {
-            const rawData = await fetch(`https://api.themoviedb.org/3/${param.type}/${param.id}/credits?api_key=${process.env.REACT_APP_KEY}&language=en-US`)
-            const data = await rawData.json()
-            setCredits(data)
-        }
-        try {
-            fetchData()
-        } catch (err) {
-            console.log(err.message)
-        }
-    }, [param.id, param.type])
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const rawData = await fetch(`https://api.themoviedb.org/3/${param.type}/${param.id}/credits?api_key=${process.env.REACT_APP_KEY}&language=en-US`)
+    //         const data = await rawData.json()
+    //         setCredits(data)
+    //     }
+    //     try {
+    //         fetchData()
+    //     } catch (err) {
+    //         console.log(err.message)
+    //     }
+    // }, [param.id, param.type])
+
+
     return !movieDetail.success && movieDetail.id && config.images ?
         (
             <>
