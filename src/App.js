@@ -5,21 +5,29 @@ import MoviePage from './components/MoviePage'
 import SearchPage from './components/SearchPage'
 import Explore from './components/Explore'
 import Home from './components/Home'
+import Loading from './components/Loading'
 
 function App() {
   const [config, setConfig] = useState({})
+  const [loading, setLoading] = useState(true)
   // Get Configuration on load.
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
-      const res = await data.json()
-      setConfig(res)
+      try {
+        const data = await fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
+        const res = await data.json()
+        setConfig(res)
+        setLoading(false)
+      } catch (e) {
+        console.log(e.message)
+      }
     }
     fetchData()
   }, [])
 
-  return (
-    <Router>
+  return loading ?
+    <Loading /> :
+    (<Router>
       <div className="bg-white min-h-screen">
         <Nav />
         <Route path="/" exact>
@@ -36,7 +44,7 @@ function App() {
         </Route>
       </div>
     </Router>
-  )
+    )
 
 }
 
