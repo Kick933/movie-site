@@ -10,9 +10,9 @@ function MovieCard(props) {
         return (
             <>
                 <div>
-                    <div className="bg-gray-600 flex-shrink-0 w-32 h-84 md:w-48 text-gray-100 rounded-xl m-1 md:mx-4 overflow-hidden transform hover:-translate-y-4 transition shadow-lg">
+                    <div className="bg-gray-600 flex-shrink-0 w-32 md:w-48 text-gray-100 rounded-xl m-1 md:mx-4 overflow-hidden transform hover:-translate-y-4 transition shadow-lg">
                         <Link to={`/media/${movie.id}/${props.type}`}>
-                            <img loading="lazy" draggable="false" className="object-cover" src={posterUrl} alt="No Poster found" ></img >
+                            <img loading="lazy" draggable="false" className="h-56 md:h-80 w-32 md:w-48 object-fill" src={posterUrl} alt="No Poster found" ></img >
                             {/* <canvas style={styles.votingMeter} className="absolute bg-green-400 rounded-full " width="40" height="40"></canvas> */}
                         </Link>
                     </div>
