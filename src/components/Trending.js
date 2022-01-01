@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import MovieCard from './MovieCard'
 import { v4 } from 'uuid' //Unique key generation
-
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai'
 function Trending(props) {
     const [trending, setTrending] = useState({
         total_pages: 1,
@@ -9,6 +9,16 @@ function Trending(props) {
     })
     const [page, setPage] = useState(1)
     const config = props.config
+    const container = useRef(null)
+
+    function scrollLeft() {
+        container.current.scrollLeft -= 200
+    }
+
+    function scrollRight() {
+        container.current.scrollLeft += 200
+    }
+
     // Fetch trending movies and TV shows or discover movie and shows.
     useEffect(() => {
         const fetchData = async () => {
@@ -46,15 +56,15 @@ function Trending(props) {
         )
     } else {
         return (
-            <div className="w-full sm:p-4 md:px-8 divide-y-2 divide-gray-300">
-                <p className="text-xl text-gray-800 p-2">{props.find === 'trending' ? `Trending ${props.text}` : `Explore ${props.text}`}</p>
-                <div className="w-full flex overflow-x-scroll md:overflow-x-scroll p-4 relative">
-                    {trending.results.map(movie => {
-                        return (
-                            <MovieCard type={props.type} config={config} movie={movie} key={v4()} />
-                        )
-                    })}
-                    {trending.total_pages > trending.page ? <button className='bg-green-300 font-bold rounded-xl px-8 md:px-16 mx-2 transform hover:-translate-y-2 w-56 max-h-48 md:max-h-72 transition' onClick={() => handlePage()}>More...</button> : null}
+            <div className="w-full sm:p-4 group md:px-8 divide-gray-300 relative">
+                <p className="text-xl border-b-2 text-gray-800">{props.find === 'trending' ? `Trending ${props.text}` : `Explore ${props.text}`}</p>
+                <div className="w-full px-18 flex scroll-smooth">
+                    <button onClick={scrollLeft} className="w-8 md:w-16 h-56 hidden text-white md:h-80 my-4 sm:flex items-center justify-center opacity-0 rounded-l-xl group-hover:opacity-70 z-10 bg-gradient-to-r from-gray-700 to-gray-100"><AiOutlineDoubleLeft color='white' size="2em" /></button>
+                    <div ref={container} className='flex overflow-x-scroll w-full mx-auto scrollbar-hide py-4'>
+                        {trending.results.map(movie => <MovieCard type={props.type} config={config} movie={movie} key={v4()} />)}
+                        {trending.total_pages > trending.page ? <button className='bg-gray-700 bg-opacity-70 text-gray-300 font-bold rounded-xl px-8 md:px-16 mx-2 transform hover:-translate-y-2 w-56 max-h-48 sm:max-h-56 md:max-h-80 transition' onClick={() => handlePage()}>More...</button> : null}
+                    </div>
+                    <button onClick={scrollRight} className="w-8 md:w-16 h-56 md:h-80 my-4 hidden sm:flex justify-center items-center opacity-0 rounded-r-xl group-hover:opacity-70 z-10  bg-gradient-to-r to-gray-700 from-gray-100"><AiOutlineDoubleRight color='white' size="2em" /></button>
                 </div>
             </div >
         )
