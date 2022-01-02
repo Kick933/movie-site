@@ -28,7 +28,7 @@ function App() {
   return loading ?
     <Loading /> :
     (<Router>
-      <div className="bg-white min-h-screen">
+      <div className="bg-gray-800 min-h-screen">
         <Nav />
         <Route path="/" exact>
           <Home config={config} />
