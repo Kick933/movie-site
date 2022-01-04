@@ -62,7 +62,7 @@ function SearchPage(props) {
         return <Loading />
     } else {
         return <>
-            <div className="flex w-full flex-wrap justify-center align-middle gap-2 py-12">
+            <div className="flex w-full flex-wrap justify-center align-middle gap-2 pt-12">
                 {movie.results.length ? movie.results.map(movie =>
                     <MovieCard
                         type="movie"
@@ -70,8 +70,9 @@ function SearchPage(props) {
                         movie={movie}
                         key={v4()} />
                 ) : <p className="mx-auto my-32 self-center justify-self-center">No Results found</p>}
-                {movie.total_pages > movie.page ? <button className='bg-gray-700 font-bold text-gray-200 rounded-xl mx-2 transform hover:-translate-y-2 w-48 h-48 sm:h-56 md:h-80 transition' onClick={() => handlePage()}>{!loading ? "More..." : "Loading..."}</button> : null}
             </div>
+            {movie.total_pages > movie.page ? <button className='bg-gray-700 block my-4 mx-auto font-bold text-gray-200 rounded-xl transform hover:-translate-y-2 w-48 h-48 sm:h-56 md:h-80 transition' onClick={() => handlePage()}>{!loading ? "More..." : "Loading..."}</button> : null}
+
         </>
     }
 }
