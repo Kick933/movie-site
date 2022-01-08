@@ -5,7 +5,7 @@ function Home({ config }) {
     document.title = "Home - Movie Database"
     if (config.images) {
         return (
-            <div className='w-full overflow-x-none mt-4'>
+            <div className='w-screen mt-4'>
                 <Trending config={config} find="trending" type='movie' text="in Movies" />
                 <Trending config={config} find="trending" type='tv' text="on TV" />
                 <Trending config={config} find="discover" type='movie' text="Movies" />
