@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Nav from './components/Nav'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MoviePage from './components/MoviePage'
 import SearchPage from './components/SearchPage'
 import Explore from './components/Explore'
 import Home from './components/Home'
 import Loading from './components/Loading'
+import ErrorPage from './components/ErrorPage'
 
 function App() {
   const [config, setConfig] = useState({})
@@ -33,6 +34,7 @@ function App() {
     (<Router>
       <div className="bg-gray-800 min-h-screen overflow-x-hidden">
         <Nav />
+        <Switch >
         <Route path="/" exact>
           <Home config={config} />
         </Route>
@@ -45,6 +47,10 @@ function App() {
         <Route path="/explore/:key/:type" exact>
           <Explore />
         </Route>
+        <Route path="/*" exact>
+          <ErrorPage wrongPath={true} />
+        </Route>
+        </Switch>
       </div>
     </Router>
     )
