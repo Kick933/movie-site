@@ -10,6 +10,7 @@ import Loading from './components/Loading'
 function App() {
   const [config, setConfig] = useState({})
   const [loading, setLoading] = useState(true)
+  const [error,setError] = useState(false)
   // Get Configuration on load.
   useEffect(() => {
     const fetchData = async () => {
@@ -19,16 +20,18 @@ function App() {
         setConfig(res)
         setLoading(false)
       } catch (e) {
+        setLoading(false)
+        setError(true)
         console.log(e.message)
       }
     }
     fetchData()
   }, [])
-
+  if(error) return <div className='w-screen h-screen bg-gray-800 text-gray-300 text-xl justify-center items-center'>Something went Wrong.Check your internet connection</div>
   return loading ?
     <Loading /> :
     (<Router>
-      <div className="bg-gray-800 min-h-screen">
+      <div className="bg-gray-800 min-h-screen overflow-x-hidden">
         <Nav />
         <Route path="/" exact>
           <Home config={config} />
