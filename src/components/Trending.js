@@ -60,7 +60,7 @@ function Trending(props) {
                 <p className="text-xl font-bold border-b-2 text-gray-200  p-2md:pl-8 pb-2">{props.find === 'trending' ? `Trending ${props.text}` : `Explore ${props.text}`}</p>
                 <div className="w-full flex">
                     <button onClick={scrollLeft} className="w-8 md:w-16 h-56 hidden text-white md:h-80 my-4 sm:flex items-center justify-center opacity-0 rounded-l-xl group-hover:opacity-70 z-10 bg-gradient-to-r from-gray-400 to-gray-800"><AiOutlineDoubleLeft color='white' size="2em" /></button>
-                    <div ref={container} className='flex overflow-x-scroll w-full mx-auto scrollbar-hide py-4'>
+                    <div ref={container} className='flex overflow-x-scroll w-full mx-auto md:scrollbar-hide py-4'>
                         {trending.results.map(movie => <MovieCard type={props.type} config={config} movie={movie} key={v4()} />)}
                         {trending.total_pages > trending.page ? <button className='bg-gray-700 bg-opacity-70 text-gray-300 rounded-xl px-8 md:px-16 mx-2 transform hover:-translate-y-2 w-56 max-h-56 md:max-h-80 transition' onClick={() => handlePage()}>More...</button> : null}
                     </div>
