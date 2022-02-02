@@ -57,7 +57,7 @@ function Trending(props) {
     } else {
         return (
             <div className="w-full sm:p-2 group md:px-8 divide-gray-300 text-gray-200 relative">
-                <p className="text-xl font-bold border-b-2 text-gray-200  p-2md:pl-8 pb-2">{props.find === 'trending' ? `Trending ${props.text}` : `Explore ${props.text}`}</p>
+                <p className="text-xl font-bold border-b-2 text-gray-200  p-2 md:pl-8 pb-2">{props.find === 'trending' ? `Trending ${props.text}` : `Explore ${props.text}`}</p>
                 <div className="w-full flex">
                     <button onClick={scrollLeft} className="w-8 md:w-16 h-56 hidden text-white md:h-80 my-4 sm:flex items-center justify-center opacity-0 rounded-l-xl group-hover:opacity-70 z-10 bg-gradient-to-r from-gray-400 to-gray-800"><AiOutlineDoubleLeft color='white' size="2em" /></button>
                     <div ref={container} className='flex overflow-x-scroll w-full mx-auto md:scrollbar-hide py-4'>
