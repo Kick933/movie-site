@@ -23,7 +23,7 @@ function MovieCard(props) {
             </>
         )
     } else {
-        return <div className="w-80 rounded-xl h-56 md:h-80 w-32 md:w-48">Loading</div>
+        return <div className="w-80 rounded-xl h-56 md:h-80 md:w-48">Loading</div>
     }
 
 }
