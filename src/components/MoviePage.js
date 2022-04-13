@@ -38,7 +38,6 @@ function MoviePage(props) {
     if (isError){
         return <Navigate to='/error' wrongPath={false} />
     }
-    console.log(movieDetail)
     return !loading ?
         (<>
             <div className="pt-16 w-4/5 mx-auto flex flex-col md:flex-row">
@@ -60,7 +59,7 @@ function MoviePage(props) {
 
                 </div>
             </div>
-            <Credits id={param.id}/>
+            {/* <Credits id={param.id}/> */}
         </>) :
         <Loading />
 }
