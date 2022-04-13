@@ -1,24 +1,24 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
+import { Config } from '../context/Config'
 import '../img.css'
 
 function MovieCard(props) {
-    const config = props.config
+    const {config} = useContext(Config)
     const movie = props.movie
     const [text,setText] = useState('Loading...')
 
     if (config.images) {
         const posterUrl = `${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`
         return (
-                <div className='snap-start scroll-smooth transition-transform transform hover:scale-125 relative hover:z-10 group'>
-                    <div className="bg-gray-600 overflow-hidden flex-shrink-0 flex w-32 md:w-48 text-gray-100 rounded-xl text-center m-1 md:mx-2 transform relative hover:z-99  transition shadow-lg">
+                <div className='rounded-xl transition-all transform hover:scale-125 hover:z-99 contrast-125 group'>
+                    <div className="bg-gray-600 overflow-hidden rounded-xl border flex w-48 text-gray-100 transform relative hover:z-50  transition shadow-lg">
                         <Link to={`/media/${movie.id}/${props.type}`}>
-                            <img loading="lazy" draggable="false" onError={() => setText("Poster not available.")} className="h-56 md:h-80 w-32 md:w-48 rounded-xl object-fill font-bold" src={posterUrl} alt={text} ></img >
-                            {/* <canvas style={styles.votingMeter} className="absolute bg-green-400 rounded-full " width="40" height="40"></canvas> */}
+                            <img loading="lazy" draggable="false" onError={() => setText("Poster not available.")} className="h-80 brightness-90 dark:brightness-75 w-48 rounded-xl object-fill font-bold" src={posterUrl} alt={text} ></img >
                         </Link>
-                        <div className='opacity-0 w-full absolute text-left bottom-2 pl-2 group-hover:opacity-100'>
-                           <p className=" text-white mx-auto font-semibold text-left truncate text-base">{movie.name || movie.title}</p>
-                            <p className='line-clamp-3 text-white mx-auto text-left text-sm'>{movie.overview}</p>
+                        <div className='opacity-0 bg-opacity-60 bg-black dark:bg-gray-500 w-full absolute text-white dark:text-gray-400 brightness-200 text-left bottom-0 p-2 group-hover:opacity-100'>
+                           <p className="mx-auto font-semibold truncate text-base">{movie.name || movie.title}</p>
+                            <p className='line-clamp-3 mx-auto text-sm'>{movie.overview}</p>
                         </div>
                     </div>
                     </div>

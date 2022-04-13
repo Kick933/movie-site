@@ -1,59 +1,77 @@
-import React, { useEffect, useState } from 'react'
-import Nav from './components/Nav'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import MoviePage from './components/MoviePage'
+import React, { useEffect, useState, useRef } from 'react'
+import {Route, Routes, Navigate, useLocation } from 'react-router-dom'
+import {Config} from './context/Config'
 import SearchPage from './components/SearchPage'
 import Explore from './components/Explore'
 import Home from './components/Home'
+import Nav from './components/Nav'
 import Loading from './components/Loading'
-import ErrorPage from './components/ErrorPage'
+import Search from './components/Search'
+import { Suspense } from 'react/cjs/react.production.min'
+const ErrorPage = React.lazy(() => import('./components/ErrorPage'))
+const MoviePage = React.lazy(() => import('./components/MoviePage'))
 
 function App() {
   const [config, setConfig] = useState({})
   const [loading, setLoading] = useState(true)
   const [error,setError] = useState(false)
+  const mountedRef = useRef(false)
+  const location = useLocation()
   // Get Configuration on load.
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
-        const res = await data.json()
-        setConfig(res)
-        setLoading(false)
-      } catch (e) {
-        setLoading(false)
+    mountedRef.current = true
+    if(loading && !error){
+      fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
+      .then((res) =>{
+        return res.json()
+      },(err) => {
+        console.log(err)
         setError(true)
-        console.log(e.message)
-      }
+      })
+      .then((res) => {
+        if(mountedRef.current && loading && !error){
+          setConfig(res)
+          setLoading(false)
+        }
+      })
     }
-    fetchData()
-  }, [])
-  if(error) return <div className='w-screen h-screen bg-gray-800 text-gray-300 text-xl justify-center items-center'>Something went Wrong.Check your internet connection</div>
-  return loading ?
-    <Loading /> :
-    (<Router>
-      <div className="bg-gray-800 min-h-screen overflow-x-hidden">
-        <Nav />
-        <Switch >
-        <Route path="/" exact>
-          <Home config={config} />
-        </Route>
-        <Route path="/media/:id/:type" exact>
-          <MoviePage config={config} />
-        </Route>
-        <Route path="/search/:query" exact>
-          <SearchPage config={config} />
-        </Route>
-        <Route path="/explore/:key/:type" exact>
-          <Explore />
-        </Route>
-        <Route path="/*" exact>
-          <ErrorPage wrongPath={true} />
-        </Route>
-        </Switch>
-      </div>
-    </Router>
+    return () => {
+      mountedRef.current = false
+    }
+  }, [loading,error])
+
+  if(error && location.pathname !== '/error'){
+    console.log(error.message)
+      return <Navigate to='/error' replace={true} wrongPath={false} />
+  }else {
+    return (
+    <Config.Provider value={{config, loading, error}}>
+            <Routes >
+                <Route path="/" exact element={<Nav />}>
+                      <Route index element={<Home />} />
+                      <Route path='/search' element={<Search />}/>
+                      <Route path="/media/:id/:type" element={
+                          <Suspense fallback={<Loading/>}>
+                            <MoviePage config={config} />
+                          </Suspense>
+                        }/>
+                <Route path="/search/:query" element={<SearchPage config={config} />} />
+                <Route path="/explore/:key/:type" element={<Explore />} />
+                  </Route>
+                <Route path="/error" element={
+                  <Suspense fallback={<Loading />}>
+                    <ErrorPage />
+                  </Suspense>
+                } />
+                <Route path="/error" element={
+                  <Suspense fallback={<Loading />}>
+                    <ErrorPage wrongPath={true} />
+                  </Suspense>
+                } />
+            </Routes>
+    </Config.Provider>
     )
+              }
 
 }
 
