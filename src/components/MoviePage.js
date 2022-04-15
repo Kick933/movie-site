@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
-import Credits from './Credits'
 import Loading from './Loading'
 
 
@@ -59,7 +58,7 @@ function MoviePage(props) {
 
                 </div>
             </div>
-            {/* <Credits id={param.id}/> */}
+            {/* TODO : Add Cast details. */}
         </>) :
         <Loading />
 }
