@@ -1,20 +1,13 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {
-      outline: {
-        indigo: '1px solid #6f00ff'
-      }
-    },
+    extend: {},
   },
   variants: {
-    extend: {
-      outline: ['hover', 'active']
-    },
+    extend: {},
   },
   plugins: [
-    require('tailwind-scrollbar-hide'),
-    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/line-clamp')
   ],
 }

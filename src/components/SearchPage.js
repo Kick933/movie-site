@@ -70,13 +70,13 @@ function SearchPage(props) {
             console.log(e.message)
         }
     }, [moviePage, showPage, query,movie.page,show.page])
-    if (loading && movie.page === null && show.page === null) {
+    if (loading) {
         return <Loading />
-    } else {
+    }else{
         return <>
         {/* Movie results. */}
-        <h2 className='w-11/12 mx-auto font-bold text-left p-2 text-2xl my-4 text-gray-300 border-b-2'>Movies</h2>
-            <div className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 justify-items-center items-center overflow-none">
+        <h2 className='w-11/12 mx-auto font-bold text-left p-2 text-2xl my-4 border-b-2'>Movies</h2>
+            <div className="flex grow-0 shrink-0 flex-wrap justify-center items-center gap-4 lg:gap-12 w-full mx-2">
                 {movie.results.length ? movie.results.map(movie =>
                     <MovieCard
                         type="movie"
@@ -84,11 +84,11 @@ function SearchPage(props) {
                         movie={movie}
                         key={v4()} />
                 ) : <p className="mx-auto my-32 self-center justify-self-center">No Results found</p>}
+            {movie.total_pages > movie.page ? <button className='bg-gray-700 block font-bold text-gray-200 rounded-xl transform hover:-translate-y-2 w-48 h-48 sm:h-56 md:h-80 transition' onClick={() => handlePage('movie')}>{!loading ? "More..." : "Loading..."}</button> : null}
             </div>
-            {movie.total_pages > movie.page ? <button className='bg-gray-700 block my-4 mx-auto font-bold text-gray-200 rounded-xl transform hover:-translate-y-2 w-48 h-48 sm:h-56 md:h-80 transition' onClick={() => handlePage('movie')}>{!loading ? "More..." : "Loading..."}</button> : null}
             {/* Tv Show Results here */}
-            <h2 className='w-11/12 mx-auto font-bold text-left p-2 text-2xl my-4 text-gray-300 border-b-2'>Shows</h2>
-            <div className="grid w-full grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 justify-items-center items-center  overflow-none">
+            <h2 className='w-11/12 mx-auto font-bold text-left p-2 text-2xl my-4 border-b-2'>Shows</h2>
+            <div className="flex grow-0 shrink-0 flex-wrap justify-center items-center gap-4 lg:gap-8 w-full mb-8">
                 {show.results.length ? show.results.map(movie =>
                     <MovieCard
                         type="tv"
@@ -96,8 +96,8 @@ function SearchPage(props) {
                         movie={movie}
                         key={v4()} />
                 ) : <p className="mx-auto my-32 self-center justify-self-center">No Results found</p>}
+            {show.total_pages > show.page ? <button className='bg-gray-700 block my-4 font-bold text-gray-200 rounded-xl transform hover:-translate-y-2 w-48 h-48 sm:h-56 md:h-80 transition' onClick={() => handlePage('tv')}>{!loading ? "More..." : "Loading..."}</button> : null}
             </div>
-            {show.total_pages > show.page ? <button className='bg-gray-700 block my-4 mx-auto font-bold text-gray-200 rounded-xl transform hover:-translate-y-2 w-48 h-48 sm:h-56 md:h-80 transition' onClick={() => handlePage('tv')}>{!loading ? "More..." : "Loading..."}</button> : null}
             
         </>
     }

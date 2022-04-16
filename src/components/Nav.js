@@ -1,45 +1,32 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
+import {AiOutlineSearch} from 'react-icons/ai'
+import { IoArrowBackCircleOutline } from 'react-icons/io5'
 
 function Nav() {
-    const [searchTerm, setSearchTerm] = useState('Search...')
-    const history = useHistory()
-
-    function handleChange(e) {
-        const target = e.target
-        setSearchTerm(target.value)
-    }
-    function search(e) {
-        e.preventDefault()
-        history.push(`/search/${searchTerm}`)
-    }
-    function empty(e) {
-        const target = e.target
-        if (target.value === "Search...") {
-            setSearchTerm('')
-        }
-        if (target.value === '') {
-            setSearchTerm('Search...')
-        }
+    const location = useLocation()
+    const navigate = useNavigate()
+    function goBack(){
+        navigate(-1)
     }
     return (
-        <nav className="w-screen h-18 bg-black">
-            <ul className="flex justify-between items-center h-12 ">
-                <li className="text-gray-200 box-border ml-8 mr-auto focus:bg-white w-max h-full text-center items-center hidden sm:flex"><a className="text-lg block w-32 h-8 mx-auto" href="/">Home</a></li>
-                <li className="text-gray-400 sm:ml-auto sm:mr-8 mx-auto">
-                    <form onSubmit={search}>
-                        <input
-                            className="mx-auto h-8 rounded-2xl text-gray-100 bg-gray-600 border-2 border-gray-400 px-3 sm:w-96" type="search"
-                            onChange={handleChange}
-                            onFocus={empty}
-                            onBlur={empty}
-                            value={searchTerm}>
-
-                        </input>
-                    </form>
+        <div className='min-h-screen transition-all dark:bg-black overflow-x-hidden'>
+        <nav className="h-20 dark:bg-gray-900 dark:shadow-none  dark:border-gray-400 shadow-xl flex text-2xl text-sky-400 items-center">
+            <ul className="flex mx-auto w-11/12 grow-0 justify-between items-center h-12">
+                {location.pathname !== '/' ? <li>
+                    <IoArrowBackCircleOutline onClick={goBack} className='font-bold text-4xl hover:text-white hover:bg-sky-400 rounded-full transition-all hover:scale-125 mx-4'></IoArrowBackCircleOutline>
+                </li> : null}
+                <li><NavLink className="font-bold bg-transparent block mx-4 h-8 transition transform focus:text-sky-300 focus:outline-none hover:scale-105" to="/">The Movie Site</NavLink></li>
+                <li>
+                    <NavLink className='flex text-4xl hover:scale-125 justify-center align-center group m-4' to='/search'>
+                        <AiOutlineSearch className='transition-all group-hover:text-white p-1 group-hover:bg-sky-400 rounded-full'></AiOutlineSearch>
+                    </NavLink>
                 </li>
             </ul>
         </nav >
+        <Outlet className='transition-opacity'/>
+        </div>
     )
 }
 
