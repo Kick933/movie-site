@@ -11,7 +11,7 @@ function Nav() {
         navigate(-1)
     }
     return (
-        <div className='min-h-screen transition-all dark:bg-black overflow-x-hidden'>
+        <div className='min-h-screen transition-all mb-16 dark:bg-black overflow-x-hidden'>
         <nav className="h-20 dark:bg-gray-900 dark:shadow-none  dark:border-gray-400 shadow-xl flex text-2xl text-sky-400 items-center">
             <ul className="flex mx-auto w-11/12 grow-0 justify-between items-center h-12">
                 {location.pathname !== '/' ? <li>
