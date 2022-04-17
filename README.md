@@ -10,9 +10,10 @@ Come and find your next binge watch [here](https://moviebykick.netlify.app).
  - [ ] View Cast Details.
  - [ ] View Reviews.
  - [X] Search for Movies.
- - [ ] Search for Shows.
+ - [X] Search for Shows.
  - [ ] Search for People.
  - [ ] View Cast Profile.
+ - [X] View Recommendations.
 
 ## Credits-:
 * TailwindCSS
