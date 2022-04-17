@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import {Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import {Config} from './context/Config'
-import SearchPage from './components/SearchPage'
 import Explore from './components/Explore'
 import Home from './components/Home'
 import Nav from './components/Nav'
 import Loading from './components/Loading'
 import Search from './components/Search'
-import { Suspense } from 'react/cjs/react.production.min'
+import axios from 'axios'
+const SearchPage = React.lazy(() => import('./components/SearchPage'))
 const ErrorPage = React.lazy(() => import('./components/ErrorPage'))
 const MoviePage = React.lazy(() => import('./components/MoviePage'))
 
@@ -15,28 +15,25 @@ function App() {
   const [config, setConfig] = useState({})
   const [loading, setLoading] = useState(true)
   const [error,setError] = useState(false)
-  const mountedRef = useRef(false)
   const location = useLocation()
   // Get Configuration on load.
   useEffect(() => {
-    mountedRef.current = true
+    let mounted = true
     if(loading && !error){
-      fetch(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
+      axios.get(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
       .then((res) =>{
-        return res.json()
-      },(err) => {
+        if(mounted && loading){
+          setLoading(false)
+          setConfig(res.data)
+        }
+      })
+      .catch((err) => {
         console.log(err)
         setError(true)
       })
-      .then((res) => {
-        if(mountedRef.current && loading && !error){
-          setConfig(res)
-          setLoading(false)
-        }
-      })
     }
     return () => {
-      mountedRef.current = false
+      mounted = false
     }
   }, [loading,error])
 
@@ -55,7 +52,11 @@ function App() {
                             <MoviePage config={config} />
                           </Suspense>
                         }/>
-                <Route path="/search/:query" element={<SearchPage config={config} />} />
+                <Route path="/search/:query" element={
+                  <Suspense fallback={<Loading />}>
+                    <SearchPage config={config} />
+                  </Suspense>
+                } />
                 <Route path="/explore/:key/:type" element={<Explore />} />
                   </Route>
                 <Route path="/error" element={
