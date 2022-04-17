@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Config } from '../context/Config'
 import { Navigate, useParams } from 'react-router-dom'
 import Loading from './Loading'
 import axios from 'axios'
 import Recommend from './Recommend'
 
 
-function MoviePage({config}) {
+function MoviePage() {
     window.scrollTo({top: 0, behavior: 'smooth'});
+    const {config} = useContext(Config)
     const {id,type} = useParams()
     const [loading, setLoading] = useState(true)
     const [isError, setError] = useState(false)
@@ -18,13 +20,12 @@ function MoviePage({config}) {
     useEffect(() => {
         let mounted = true
         axios.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`)
-        .then(function(res){
+        .then((res) => {
             if(mounted){
                 setMovieDetail(res.data)
                 setLoading(false)
             }
-        }
-        ).catch(function(err){
+        }).catch((err) => {
             console.log(err)
             if(mounted){
                 setError(true)
