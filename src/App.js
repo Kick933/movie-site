@@ -7,6 +7,7 @@ import Nav from './components/Nav'
 import Loading from './components/Loading'
 import Search from './components/Search'
 import axios from 'axios'
+import Menu from './components/Menu'
 const SearchPage = React.lazy(() => import('./components/SearchPage'))
 const ErrorPage = React.lazy(() => import('./components/ErrorPage'))
 const MoviePage = React.lazy(() => import('./components/MoviePage'))
@@ -46,29 +47,31 @@ function App() {
             <Routes >
                 <Route path="/" exact element={<Nav />}>
                       <Route index element={<Home />} />
+                      <Route path="/menu" element ={<Menu />}></Route>
                       <Route path='/search' element={<Search />}/>
                       <Route path="/media/:id/:type" element={
                           <Suspense fallback={<Loading/>}>
                             <MoviePage config={config} />
                           </Suspense>
                         }/>
-                <Route path="/search/:query" element={
-                  <Suspense fallback={<Loading />}>
-                    <SearchPage config={config} />
-                  </Suspense>
-                } />
-                <Route path="/explore/:key/:type" element={<Explore />} />
-                  </Route>
-                <Route path="/error" element={
-                  <Suspense fallback={<Loading />}>
-                    <ErrorPage />
-                  </Suspense>
-                } />
-                <Route path="/error" element={
-                  <Suspense fallback={<Loading />}>
-                    <ErrorPage wrongPath={true} />
-                  </Suspense>
-                } />
+                      <Route path="/search/:query" element={
+                        <Suspense fallback={<Loading />}>
+                          <SearchPage config={config} />
+                        </Suspense>
+                      } />
+                      <Route path="/explore/:key/:type" element={<Explore />} />
+                        </Route>
+                      <Route path="/error" element={
+                        <Suspense fallback={<Loading />}>
+                          <ErrorPage />
+                        </Suspense>
+                      } />
+                      <Route path="/error" element={
+                        <Suspense fallback={<Loading />}>
+                          <ErrorPage wrongPath={true} />
+                        </Suspense>
+                      } />
+                      
             </Routes>
     </Config.Provider>
     )
