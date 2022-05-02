@@ -6,8 +6,8 @@ import Logo from '../images/logo.svg'
 
 export default function Footer() {
   return (
-    <div className='w-full flex-wrap md:flex-row py-8 gap-16 relative text-gray-600 bottom-0 left-0 right-0 border-2 bg-white border-sky-300 rounded-t-xl flex items-center justify-evenly'>
-        <p>Check out my Portfolio</p>
+    <div className='w-full flex flex-wrap lg:flex-row py-8 gap-x-16 gap-y-4 relative text-gray-600 bottom-0 left-0 right-0 border-2 bg-white border-sky-300 rounded-t-xl items-center justify-evenly'>
+        {/* <p>Check out my Portfolio</p> */}
         <div className='flex flex-col md:flex-row gap-2'>
             <p className='text-gray-500'>Connect with me</p>
             <div className='items-center flex text-xl justify-center gap-4'>

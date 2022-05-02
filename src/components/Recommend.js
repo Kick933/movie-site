@@ -36,9 +36,9 @@ export default function Recommend({type,id}) {
         )
     }
     return (
-        <div className='text-center my-8 md:p-2 mx-auto border rounded-xl shadow-md max-w-6xl p-4'>
-            <p className='block font-bold text-xl mx-auto'>Recommended</p>
-            <div className='flex gap-1 p-2 md:gap-8 md:py-10 overflow-y-visible overflow-x-scroll'>
+        <div className='text-center md:p-2 mx-auto border rounded-xl shadow-md w-full max-w-6xl p-4'>
+            <p className=' font-bold text-xl mx-auto'>Recommended</p>
+            <div className='flex gap-1 p-2 md:gap-8 md:py overflow-y-visible overflow-x-scroll'>
                 {data.results.map(item => <MovieCard type={type} movie={item} key={item.id} />)}
             </div>
         </div>
