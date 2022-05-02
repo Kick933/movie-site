@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react'
+import React, {  useContext } from 'react'
 import { Config } from '../context/Config'
 import { Navigate, useParams } from 'react-router-dom'
 import Loading from './Loading'
@@ -10,7 +10,6 @@ function MoviePage() {
     window.scrollTo({top: 0, behavior: 'smooth'});
     const {config} = useContext(Config)
     let {id,type} = useParams()
-    const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`
     // const mounted = useRef(true)
     const { data: movieDetail, loading, error} = useFetch(type,id,{})
     
