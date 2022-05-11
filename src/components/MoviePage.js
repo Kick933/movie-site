@@ -10,8 +10,9 @@ function MoviePage() {
     window.scrollTo({top: 0, behavior: 'smooth'});
     const {config} = useContext(Config)
     let {id,type} = useParams()
-    // const mounted = useRef(true)
-    const { data: movieDetail, loading, error} = useFetch(type,id,{})
+    const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`
+    const deps = [url, type, id]
+    const { data: movieDetail, loading, error} = useFetch(url, deps, {})
     
     if (error){
         return <Navigate to='/error' wrongPath={false} />
