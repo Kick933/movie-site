@@ -1,29 +1,32 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-
-
-export const useFetch = (type, id, initailValue) => {
+// Disabled exhaustive deps warning as deps is the dependency array.
+/* eslint-disable react-hooks/exhaustive-deps */
+export const useFetch = (url, deps = [], initailValue) => {
     const [data, setData] = useState(initailValue)
     const [loading,setLoading] = useState(true)
     const [error, setError] = useState(null)
     useEffect(() => {
         let mounted = true
         if(mounted){
-            (async () => {
+            setLoading(true)
+            setError(null)
+            async function getData (){
                 try{
-                    const res = await axios(`https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`)
+                    const res = await axios(url)
                     setData(res.data)
                 } catch(err){
                     setError(err)
                 } finally{
                     setLoading(false)
                 }
-            })()
+            }
+            getData()
         }
     
       return () => {
         mounted = false
       }
-    }, [type, id ])
-    return { data, loading, error}
+    }, deps)
+    return { data, loading, error }
 }
