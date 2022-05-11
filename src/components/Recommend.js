@@ -8,23 +8,7 @@ export default function Recommend({type,id}) {
     const url = `https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=${process.env.REACT_APP_KEY}&language=en-US&page=1`
     const deps = [type,id, url]
     const {data, loading, error} = useFetch(url, deps, [])
-    // useEffect(() => {
-    //     let mounted = true
-    //     axios.get()
-    //     .then(function(res){
-    //         if(mounted){
-    //             setData(res.data)
-    //             setLoading(false)
-    //         }
-    //     })
-    //     .catch(function(error){
-    //         console.log(error)
-    //         if(mounted){
-    //             setLoading(false)
-    //             setError(true)
-    //         }
-    //     })
-    // },[id,type])
+
     if(loading) return null
     if(error) navigate('/error')
     if(data.results.length === 0){
@@ -33,7 +17,7 @@ export default function Recommend({type,id}) {
     return (
         <div className='text-center md:p-2 mx-auto border rounded-xl shadow-md w-full max-w-6xl p-4'>
             <p className=' font-bold text-xl mx-auto'>Recommended</p>
-            <div className='flex gap-1 p-2 md:gap-8 md:py overflow-y-visible overflow-x-scroll'>
+            <div className='flex gap-1 p-2 md:gap-8 justify-center items-center md:py overflow-y-visible overflow-x-scroll'>
                 {data.results.map(item => <MovieCard type={type} movie={item} key={item.id} />)}
             </div>
         </div>
