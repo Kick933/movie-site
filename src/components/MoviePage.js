@@ -20,8 +20,8 @@ function MoviePage() {
     if(!loading && !error) document.title = movieDetail.name || movieDetail.title || movieDetail.original_title || movieDetail.original_name
     return !loading ?
         (<>
-            <div className="max-w-6xl my-12 grow-0 shrink-0 shadow-xl rounded-xl p-4 border py-16 w-full mx-auto flex flex-col lg:flex-row">
-                {config.images ? <img src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movieDetail.poster_path}`} className="max-w-xs min-w-fit w-full mx-auto lg:mx-8 shadow-xl border-4 border-sky-300 rounded-xl" alt="Poster Not Found"></img> : null }
+            <div className="max-w-7xl my-12 grow-0 shrink-0 shadow-xl rounded-xl m-4 border py-16 w-full mx-auto flex flex-col lg:flex-row">
+                {config.images ? <img draggable='false' src={`${config.images.secure_base_url}${config.images.poster_sizes[3]}${movieDetail.poster_path}`} className="max-w-xs min-w-fit w-full mx-auto lg:mx-8 shadow-xl border-4 border-sky-300 rounded-xl" alt="Poster Not Found"></img> : null }
                 <div className="flex px-4 justify-center">
                     <div className="mx-auto text-center lg:text-left">
                         <h1 className="font-bold antialiased text-sky-400 mt-8 font-sans text-4xl">{movieDetail.name || movieDetail.title || movieDetail.original_title || movieDetail.original_name}</h1>
