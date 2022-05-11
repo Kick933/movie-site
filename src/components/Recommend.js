@@ -29,11 +29,7 @@ export default function Recommend({type,id}) {
     if(loading) return null
     if(error) navigate('/error')
     if(data.results.length === 0){
-        return (
-            <div className='text-center my-8 md:p-2 mx-auto border rounded-xl shadow-md max-w-6xl p-4'>
-                <p className='my-4'>Oh, we have no available recommendations for this {type}.</p>
-            </div>
-        )
+        return null
     }
     return (
         <div className='text-center md:p-2 mx-auto border rounded-xl shadow-md w-full max-w-6xl p-4'>
