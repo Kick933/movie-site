@@ -1,13 +1,23 @@
 import React from 'react'
 
 export default function Menu() {
+  const user = null // Temporary variable
   return (
-    <div className='max-w-xl max-h-96 flex flex-col flex-grow-0 flex-shrink-0'>
-        <a href= '/'>Menu option PlaceHolder</a>
-        <a href= '/'>Menu option PlaceHolder</a>
-        <a href= '/'>Menu option PlaceHolder</a>
-        <a href= '/'>Menu option PlaceHolder</a>
-        <a href= '/'>Menu option PlaceHolder</a>
-    </div>
+    <nav className='w-full flex justify-center top-0 left-0 right-0 min-h-screen absolute bg-white z-30 text-center text-2xl text-sky-600 flex-grow-0 flex-shrink-0'>
+      <ul className='w-full flex flex-col justify-center items-center gap-4'>
+        {/* Show login and signup if no user is defined. Else show Hi, {user.name} */}
+        {!user ?
+        <>
+          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/login'>Login</a></li>
+          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/signup'>Sign Up</a></li>
+        </>
+        : <>
+          <li className='w-80 h-20'><span className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all'>Hi, {user.name}</span></li>
+          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/movies'>My Movies</a></li>
+          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/shows'>My Shows</a></li>  
+        </>
+}
+        </ul>
+    </nav>
   )
 }
