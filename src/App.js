@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import {Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import {Config} from './context/Config'
 import Explore from './components/Explore'
@@ -6,36 +6,15 @@ import Home from './components/Home'
 import Nav from './components/Nav'
 import Loading from './components/Loading'
 import Search from './components/Search'
-import axios from 'axios'
+import { useGetConfig } from './hooks/useGetConfig'
 const SearchPage = React.lazy(() => import('./components/SearchPage'))
-const ErrorPage = React.lazy(() => import('./components/ErrorPage'))
-const MoviePage = React.lazy(() => import('./components/MoviePage'))
+const ErrorPage = React.lazy(() => import('./components/routes/ErrorPage'))
+const MoviePage = React.lazy(() => import('./components/routes/MoviePage'))
+const LoginPage = React.lazy(() => import('./components/auth-pages/Login'))
 
 function App() {
-  const [config, setConfig] = useState({})
-  const [loading, setLoading] = useState(true)
-  const [error,setError] = useState(false)
+  const {config, error, loading} = useGetConfig()
   const location = useLocation()
-  // Get Configuration on load.
-  useEffect(() => {
-    let mounted = true
-    if(loading && !error){
-      axios.get(`https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_KEY}`)
-      .then((res) =>{
-        if(mounted && loading){
-          setLoading(false)
-          setConfig(res.data)
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-        setError(true)
-      })
-    }
-    return () => {
-      mounted = false
-    }
-  }, [loading,error])
 
   if(error && location.pathname !== '/error'){
     console.log(error.message)
@@ -47,6 +26,12 @@ function App() {
                 <Route path="/" exact element={<Nav />}>
                       <Route index element={<Home />} />
                       <Route path='/search' element={<Search />}/>
+                      <Route path='/login' element={
+                        <Suspense fallback={<Loading />}>
+                        <LoginPage />
+                      </Suspense>
+                      }>
+                      </Route>
                       <Route path="/media/:id/:type" element={
                           <Suspense fallback={<Loading/>}>
                             <MoviePage config={config} />
