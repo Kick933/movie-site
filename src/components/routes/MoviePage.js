@@ -1,9 +1,9 @@
 import React, {  useContext } from 'react'
-import { Config } from '../context/Config'
+import { Config } from '../../context/Config'
 import { Navigate, useParams } from 'react-router-dom'
-import Loading from './Loading'
-import Recommend from './Recommend'
-import { useFetch } from '../hooks/useFetch'
+import Loading from '../Loading'
+import Recommend from '../Recommend'
+import { useFetch } from '../../hooks/useFetch'
 
 
 function MoviePage() {

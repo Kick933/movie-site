@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 // Disabled exhaustive deps warning as deps is the dependency array.
 /* eslint-disable react-hooks/exhaustive-deps */
-export const useFetch = (url, deps = [], initailValue) => {
+export const useFetch = (url, deps = [], initailValue = {}) => {
     const [data, setData] = useState(initailValue)
     const [loading,setLoading] = useState(true)
     const [error, setError] = useState(null)
