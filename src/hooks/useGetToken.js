@@ -10,19 +10,16 @@ export function useGetToken() {
             const url = `https://api.themoviedb.org/3/authentication/token/new?api_key=${process.env.REACT_APP_KEY}`
             axios.get(url)
             .then((res)=>{
-                if(mounted){
-                    if(!(token && token.success)){
+                if(mounted && !(token && token.success)){
                         setToken(res.data)
-                    }
                 }
             })
             .catch(err => {
                 console.log(err)
                 setError(true)
             })
-
         return () => mounted = false
-    },[token])
+    })
 
     return { token , error}
 }
