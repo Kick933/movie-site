@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Menu() {
   const user = null // Temporary variable
@@ -8,15 +8,13 @@ export default function Menu() {
         {/* Show login and signup if no user is defined. Else show Hi, {user.name} */}
         {!user ?
         <>
-          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/login'>Login</a></li>
-          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/signup'>Sign Up</a></li>
-        </>
-        : <>
+          <li className='w-80 h-20'><Link className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' to= '/login'>Login</Link></li>
+          <li className='w-80 h-20'><Link className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' to= '/signup'>Sign Up</Link></li>
+        </>        : <>
           <li className='w-80 h-20'><span className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all'>Hi, {user.name}</span></li>
-          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/movies'>My Movies</a></li>
-          <li className='w-80 h-20'><a className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' href= '/shows'>My Shows</a></li>  
-        </>
-}
+          <li className='w-80 h-20'><Link className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' to= '/movies'>My Movies</Link></li>
+          <li className='w-80 h-20'><Link className='hover:text-sky-300 w-full p-2 block hover:scale-110 hover:border-b-4 rounded-md border-sky-300 border-b transition-all' to= '/shows'>My Shows</Link></li>  
+        </>}
         </ul>
     </nav>
   )
