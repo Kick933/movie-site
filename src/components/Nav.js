@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Outlet, NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Outlet, NavLink, useLocation } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineSearch, AiFillCloseCircle} from 'react-icons/ai'
 import Footer from './Footer'
@@ -7,7 +7,14 @@ import Menu from './Menu'
 
 function Nav() {
     const [menuActive, setMenuActive] = useState(false)
-    
+    const location = useLocation()
+    useEffect(() => {
+        let mounted = true
+        if(mounted){
+            setMenuActive(false)
+        }
+        return () => mounted = false
+    }, [location])
     function handleMenu(){
             setMenuActive(prev => !prev)
     }
