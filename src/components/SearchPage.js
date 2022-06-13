@@ -4,7 +4,7 @@ import MovieCard from './MovieCard'
 import { v4 } from 'uuid'
 import Loading from './Loading'
 
-function SearchPage(props) {
+function SearchPage() {
     const { query } = useParams()
     const [show, setShows] = useState({
         total_pages: null,
@@ -80,7 +80,6 @@ function SearchPage(props) {
                 {movie.results.length ? movie.results.map(movie =>
                     <MovieCard
                         type="movie"
-                        config={props.config}
                         movie={movie}
                         key={v4()} />
                 ) : <p className="mx-auto my-32 self-center justify-self-center">No Results found</p>}
@@ -92,7 +91,6 @@ function SearchPage(props) {
                 {show.results.length ? show.results.map(movie =>
                     <MovieCard
                         type="tv"
-                        config={props.config}
                         movie={movie}
                         key={v4()} />
                 ) : <p className="mx-auto my-32 self-center justify-self-center">No Results found</p>}
