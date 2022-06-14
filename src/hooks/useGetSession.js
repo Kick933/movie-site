@@ -16,7 +16,7 @@ export function useGetSession() {
             .then(res => {
                 if(res.data.success && mounted){
                     setSession(res.data.session_id)
-                    localStorage.session = JSON.stringify(res.data.session_id)
+                    localStorage.session = res.data.session_id
                     setSearchParams({})
                 }
             })
@@ -26,6 +26,5 @@ export function useGetSession() {
         }
         return () => mounted = false
      },[session, approved, request_token, setSearchParams])
-
-     return { session }
+     return session
 }

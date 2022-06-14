@@ -14,6 +14,13 @@ Come and find your next binge watch [here](https://moviebykick.netlify.app).
  - [ ] Search for People.
  - [ ] View Cast Profile.
  - [X] View Recommendations.
+ - [X] Added Ability to Login.
+ - [ ] View Favourite Movies.
+ - [ ] View Favourite Shows.
+ - [ ] Add Shows to favourite.
+ - [ ] Add movies to favourite.
+ - [ ] View Watchlist.
+ - [ ] Add Movie/Show to watchlist.
 
 ## Credits-:
 * TailwindCSS

@@ -4,7 +4,7 @@ import Loading from './Loading'
 import Trending from './Trending'
 import { useNavigate } from 'react-router-dom'
 
-function Home() {
+function FrontPage() {
     const {config, loading, error} = useContext(Config)
     const navigate = useNavigate()
     document.title = "Home - Movie Database"
@@ -19,4 +19,4 @@ function Home() {
     )
     }
 
-export default Home
+export default FrontPage
