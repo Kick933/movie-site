@@ -7,7 +7,7 @@ import { useGetSession } from './hooks/useGetSession'
 
 function App() {
   // This component provides necessary config and session details to its child via Config context.
-  const session = useGetSession()
+  const { session, logOut} = useGetSession()
   const { config, error, loading } = useGetConfig()
   const location = useLocation()
   if(error && location.pathname !== '/error'){
@@ -15,7 +15,7 @@ function App() {
     return <Navigate to='/error' replace={true} wrongPath={false} />
   }else {
     return (
-    <Config.Provider value={{config, loading, error, session}}>
+    <Config.Provider value={{config, loading, error, session, logOut}}>
             <Home />
     </Config.Provider>
     )
