@@ -1,32 +1,36 @@
 import axios from "axios"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 // Disabled exhaustive deps warning as deps is the dependency array.
 /* eslint-disable react-hooks/exhaustive-deps */
 export const useFetch = (url, deps = [], initailValue = {}) => {
     const [data, setData] = useState(initailValue)
     const [loading,setLoading] = useState(true)
     const [error, setError] = useState(null)
+    let mounted = true
+    let ref = useRef(null)
+    ref.current = mounted
     useEffect(() => {
-        let mounted = true
-        if(mounted){
+        ref.current = true
+        if(ref.current){
             setLoading(true)
             setError(null)
             async function getData (){
                 try{
                     const res = await axios(url)
-                    setData(res.data)
+                    if(ref.current) setData(res.data)
                 } catch(err){
-                    setError(err)
+                    if(ref.current) setError(err)
                 } finally{
-                    setLoading(false)
+                    if(ref.current) setLoading(false)
                 }
             }
             getData()
         }
     
       return () => {
-        mounted = false
+        ref.current = false
       }
     }, deps)
-    return { data, loading, error }
+
+    return { data, setData , loading, error }
 }
