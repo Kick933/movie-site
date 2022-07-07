@@ -42,9 +42,9 @@ function MoviePage() {
                             <p className="text-lg text-gray-800">{movieDetail.tagline}</p>
                         </div>
                         <Genre data={movieDetail} />
-                        <div className='flex gap-4'>
+                        <div className='flex gap-4 h-6'>
                         {!(ratingLoading || ratingError) ?<button onClick={addWatchlist} title={ratingData.watchlist ? "Remove from watchlist" : "Add to watchlist"} className='text-3xl text-black'>{ratingData.watchlist ? <AiFillClockCircle/> : <AiOutlineClockCircle/>}</button> : null}
-                        {!(ratingLoading || ratingError) ? <button onClick={addFavorite} title={ratingData.favorite ? "Remove from favourites" : "Add to favourites"} className='text-3xl text-red-500 flex justify-center items-center'>{ratingData.favorite ? <AiFillHeart/> : <AiOutlineHeart/>}</button> : null}
+                        {!(ratingLoading || ratingError) ? <button onClick={addFavorite} title={ratingData.favorite ? "Remove from favourites" : "Add to favourites"} className='text-3xl text-red-500'>{ratingData.favorite ? <AiFillHeart/> : <AiOutlineHeart/>}</button> : null}
                         </div>
                         <Plot data={movieDetail} />
                         <button onClick={setRating} className='hidden'>Rate</button> 
