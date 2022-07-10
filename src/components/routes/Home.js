@@ -7,7 +7,7 @@ import Loading from '../Loading'
 import Explore from '../Explore'
 import { useGetUser } from '../../hooks/useGetUser'
 import { User } from '../../context/User'
-import Movies from '../auth-pages/Movies'
+import AccountLists from '../auth-pages/AccountLists'
 const SearchPage = React.lazy(() => import('../SearchPage'))
 const ErrorPage = React.lazy(() => import('./ErrorPage'))
 const MoviePage = React.lazy(() => import('./MoviePage'))
@@ -26,7 +26,8 @@ export default function Home() {
           <LoginPage />
         </Suspense>
           } />
-          <Route path='/movies' element={<Movies />} />
+          <Route path='/favorite' element={<AccountLists />} />
+          <Route path='/watchlist' element={<AccountLists />} />
           <Route path="/media/:id/:type" element={
               <Suspense fallback={<Loading/>}>
                 <MoviePage />
