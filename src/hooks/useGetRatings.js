@@ -3,7 +3,7 @@ import {useEffect, useRef, useContext} from 'react'
 import { Config } from '../context/Config'
 import { useFetch } from './useFetch'
 
-export function useGetRatings({type,id}) {
+export function useGetRatings(type,id) {
     let mounted = true
     let ref = useRef(null)
     ref.current = mounted

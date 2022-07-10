@@ -6,14 +6,12 @@ import Recommend from '../Recommend'
 import { useFetch } from '../../hooks/useFetch'
 import Plot from '../abstracts/Plot'
 import Genre from '../abstracts/Genre'
-import { useGetRatings } from '../../hooks/useGetRatings'
-import {AiFillHeart, AiOutlineHeart, AiFillClockCircle, AiOutlineClockCircle} from 'react-icons/ai'
+import { AccountStates } from '../auth-pages/AccountStates'
 
 
 function MoviePage() {
     const {config} = useContext(Config)
     let {id,type} = useParams()
-    const {data : ratingData, loading:ratingLoading, error: ratingError, setRating, addWatchlist, addFavorite} = useGetRatings({type,id})
     const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`
     let deps = [url, type, id]
     const { data: movieDetail, loading, error} = useFetch(url, deps, {})
@@ -43,12 +41,9 @@ function MoviePage() {
                         </div>
                         <Genre data={movieDetail} />
                         <div className='flex gap-4 h-6'>
-                        {!(ratingLoading || ratingError) ?<button onClick={addWatchlist} title={ratingData.watchlist ? "Remove from watchlist" : "Add to watchlist"} className='text-3xl text-black'>{ratingData.watchlist ? <AiFillClockCircle/> : <AiOutlineClockCircle/>}</button> : null}
-                        {!(ratingLoading || ratingError) ? <button onClick={addFavorite} title={ratingData.favorite ? "Remove from favourites" : "Add to favourites"} className='text-3xl text-red-500'>{ratingData.favorite ? <AiFillHeart/> : <AiOutlineHeart/>}</button> : null}
+                            <AccountStates type={type} id={id} />
                         </div>
                         <Plot data={movieDetail} />
-                        <button onClick={setRating} className='hidden'>Rate</button> 
-                        {/* Temporarily makefake button to hide no-unsed-vars. Will implement rating functionality soon. */}
                     </div>
                 </div>
             </div>
