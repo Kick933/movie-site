@@ -12,9 +12,8 @@ export default function AccountLists() {
     const {pathname} = useLocation()
     const { session } = useContext(Config)
     const [type, setType] = useState('movies') // For fetching the list
-    const [urlType, setUrlType] = useState('movie') // For individual movie links
     if(session === undefined) navigate('/login', {replace:true})
-    const [page, setPage] = useState(1)
+    const page = 1
     let url = `https://api.themoviedb.org/3/account/{account_id}${pathname}/${type}?api_key=${process.env.REACT_APP_KEY}&session_id=${session}&language=en-US&sort_by=created_at.asc&page=${page}`
     const deps = [page,type, pathname]
     const {data, loading, error, setData} = useFetch(url,deps)
