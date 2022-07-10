@@ -19,9 +19,9 @@ function Nav() {
             setMenuActive(prev => !prev)
     }
     return (
-        <div className='min-h-screen transition-all dark:bg-black overflow-x-hidden flex justify-between flex-col'>
-        <nav className="h-20 relative w-full dark:bg-gray-900 dark:shadow-none dark:border-gray-400 shadow-xl flex text-2xl text-sky-400 items-center">
-            <ul className="flex mx-auto w-11/12 grow-0 justify-between items-center h-12">
+        <div className='min-h-screen relative transition-all dark:bg-black overflow-x-hidden flex justify-between items-center flex-col'>
+        <nav className="h-20 relative w-full shadow-xl flex text-2xl text-sky-400 items-center">
+            <ul className="flex mx-auto w-full grow-0 justify-between items-center h-12">
                 <li onClick={handleMenu} className="flex text-4xl group ease-in-out transition-all text-sky-400 p-2 hover:scale-125 hover:rotate-180 justify-center align-center group m-4">
                     <AiFillCloseCircle className={menuActive ? "" : 'hidden'}/>
                     <GiHamburgerMenu className={menuActive ? 'hidden' : ''}/>
@@ -36,10 +36,10 @@ function Nav() {
                 </li>
             </ul>
         </nav >
-        <div className='flex relative flex-col grow-0 shrink-0 justify-center items-center w-full max-h-full'>
+        <div className='flex flex-col grow-0 shrink-0 w-full max-h-full'>
             {menuActive ? <Menu /> : null}
-            <Outlet/>
         </div>
+        <Outlet/>
         <Footer />
         </div>
     )
