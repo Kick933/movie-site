@@ -5,7 +5,7 @@ import {AiFillClockCircle, AiOutlineClockCircle, AiFillHeart, AiOutlineHeart} fr
 export const AccountStates = ({type,id}) => {
 	const {data,loading,error,addWatchlist,addFavorite} = useGetRatings(type,id)
 	if(error) return <div className='h-8 text-red-300'>Something went wrong!</div>
-  if(loading) return <div className='h-8 text-gray-600'>Loading...</div>
+  	if(loading) return <div className='h-8 text-gray-600'>Loading...</div>
 	function addWatch(e){
 		e.stopPropagation()
 		addWatchlist()
