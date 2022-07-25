@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import {Config} from '../../context/Config'
 import {useGetRatings} from '../../hooks/useGetRatings'
 import {AiFillClockCircle, AiOutlineClockCircle, AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 
 export const AccountStates = ({type,id}) => {
+	const {session} = useContext(Config)
 	const {data,loading,error,addWatchlist,addFavorite} = useGetRatings(type,id)
+	if(!session) return null
 	if(error) return <div className='h-8 text-red-300'>Something went wrong!</div>
   	if(loading) return <div className='h-8 text-gray-600'>Loading...</div>
 	function addWatch(e){
