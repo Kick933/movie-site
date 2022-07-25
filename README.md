@@ -15,12 +15,12 @@ Come and find your next binge watch [here](https://moviebykick.netlify.app).
  - [ ] View Cast Profile.
  - [X] View Recommendations.
  - [X] Added Ability to Login.
- - [ ] View Favourite Movies.
- - [ ] View Favourite Shows.
- - [ ] Add Shows to favourite.
- - [ ] Add movies to favourite.
- - [ ] View Watchlist.
- - [ ] Add Movie/Show to watchlist.
+ - [X] View Favourite Movies.
+ - [X] View Favourite Shows.
+ - [X] Add Shows to favourite.
+ - [X] Add movies to favourite.
+ - [X] View Watchlist.
+ - [X] Add Movie/Show to watchlist.
 
 ## Credits-:
 * TailwindCSS
