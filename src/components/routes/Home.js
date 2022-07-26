@@ -8,7 +8,7 @@ import Explore from '../Explore'
 import { useGetUser } from '../../hooks/useGetUser'
 import { User } from '../../context/User'
 import AccountLists from '../auth-pages/AccountLists'
-const SearchPage = React.lazy(() => import('../SearchPage'))
+const SearchPage = React.lazy(() => import('./SearchPage'))
 const ErrorPage = React.lazy(() => import('./ErrorPage'))
 const MoviePage = React.lazy(() => import('./MoviePage'))
 const LoginPage = React.lazy(() => import('../auth-pages/Login'))

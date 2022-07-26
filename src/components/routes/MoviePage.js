@@ -2,11 +2,11 @@ import React, {  useContext } from 'react'
 import { Config } from '../../context/Config'
 import { Navigate, useParams } from 'react-router-dom'
 import Loading from '../Loading'
-import Recommend from '../Recommend'
+import Recommend from '../abstracts/Recommend'
 import { useFetch } from '../../hooks/useFetch'
 import Plot from '../abstracts/Plot'
 import Genre from '../abstracts/Genre'
-import { AccountStates } from '../auth-pages/AccountStates'
+import { AccountStates } from '../abstracts/AccountStates'
 
 
 function MoviePage() {
@@ -19,7 +19,6 @@ function MoviePage() {
     if (error){
         return <Navigate to='/error' wrongPath={false} />
     }
-
     if(!loading){
         let movieName = movieDetail.name || movieDetail.title || movieDetail.original_title || movieDetail.original_name
         document.title = movieName

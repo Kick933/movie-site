@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
-import { Config } from '../context/Config'
-import '../img.css'
+import { Config } from '../../context/Config'
+import '../../img.css'
 
 function MovieCard(props) {
     const {config} = useContext(Config)

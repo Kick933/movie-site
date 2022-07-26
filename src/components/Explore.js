@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-function Explore(props) {
+function Explore() {
     const { type, key } = useParams()
     const [data, setData] = useState({})
 

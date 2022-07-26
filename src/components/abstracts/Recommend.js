@@ -1,7 +1,7 @@
 import React from 'react'
 import MovieCard from './MovieCard'
 import { useNavigate } from 'react-router-dom'
-import { useFetch } from '../hooks/useFetch'
+import { useFetch } from '../../hooks/useFetch'
 
 export default function Recommend({type,id}) {
     const navigate = useNavigate()

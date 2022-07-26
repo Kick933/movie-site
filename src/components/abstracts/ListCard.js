@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Config } from '../../context/Config'
-import { AccountStates } from '../auth-pages/AccountStates'
+import { AccountStates } from '../abstracts/AccountStates'
 
 function ListCard({movie, type}) {
     const {config} = useContext(Config)
@@ -15,7 +15,7 @@ function ListCard({movie, type}) {
         return (
                 <div className='rounded-xl grow-0 shrink-0 mt-8 mx-auto bg-white w-11/12 md:w-4/5 shadow-lg'>
                         <div onClick={goToLink} title={movie.title} className='flex cursor-pointer' draggable='false'>
-                            <img loading="lazy" draggable="false" onError={() => setText("Poster not available.")} className="h-full w-24 lg:w-auto rounded-l-xl object-fill font-bold" src={posterSM} alt={text} ></img >
+                            <img loading="lazy" draggable="false" onError={() => setText("Poster not available.")} className="h-full w-24 lg:w-48 rounded-l-xl object-fill font-bold" src={posterSM} alt={text} ></img >
                             <div className='m-2 md:m-4 flex flex-col items-start'>
                                 <p className="block text-xl mb lg:mb-4 md:text-2xl font-bold text-sky-400">{movie.name || movie.title}</p>
                                 <AccountStates type={type} id={movie.id} />

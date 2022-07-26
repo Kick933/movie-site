@@ -2,7 +2,7 @@ import React from 'react'
 import { FaLinkedin } from 'react-icons/fa'
 import { AiFillHeart, AiFillMail } from 'react-icons/ai'
 import { BsGithub } from 'react-icons/bs'
-import Logo from '../images/logo.svg'
+import Logo from '../../images/logo.svg'
 
 export default function Footer() {
   return (

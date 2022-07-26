@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import MovieCard from './MovieCard'
+import MovieCard from '../abstracts/MovieCard'
 import { v4 } from 'uuid'
-import Loading from './Loading'
+import Loading from '../Loading'
 
 function SearchPage() {
     const { query } = useParams()

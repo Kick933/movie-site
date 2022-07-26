@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineSearch, AiFillCloseCircle} from 'react-icons/ai'
-import Footer from './Footer'
+import Footer from './abstracts/Footer'
 import Menu from './Menu'
 
 function Nav() {
