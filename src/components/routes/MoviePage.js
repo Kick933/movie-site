@@ -7,6 +7,7 @@ import { useFetch } from '../../hooks/useFetch'
 import Plot from '../abstracts/Plot'
 import Genre from '../abstracts/Genre'
 import { AccountStates } from '../abstracts/AccountStates'
+import Seasons from '../abstracts/Seasons'
 
 
 function MoviePage() {
@@ -47,6 +48,7 @@ function MoviePage() {
                 </div>
             </div>
             {/* TODO : Add Cast details. */}
+            {type === 'tv' && movieDetail.seasons && movieDetail.seasons.length ? <Seasons seasons={movieDetail.seasons} id={id}/> : null}
             <Recommend type={type} id={id} />
         </>)
     }
