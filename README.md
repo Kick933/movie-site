@@ -21,6 +21,8 @@ Come and find your next binge watch [here](https://moviebykick.netlify.app).
  - [X] Add movies to favourite.
  - [X] View Watchlist.
  - [X] Add Movie/Show to watchlist.
+ - [X] View Different Seasons.
+ - [X] View overview for episodes by season.
 
 ## Credits-:
 * TailwindCSS
