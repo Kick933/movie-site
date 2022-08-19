@@ -8,6 +8,7 @@ import Plot from '../abstracts/Plot'
 import Genre from '../abstracts/Genre'
 import { AccountStates } from '../abstracts/AccountStates'
 import Seasons from '../abstracts/Seasons'
+import Reviews from '../abstracts/Reviews'
 
 
 function MoviePage() {
@@ -30,7 +31,7 @@ function MoviePage() {
                 src={config.images ?
                     `${config.images.secure_base_url}${config.images.poster_sizes[3]}${movieDetail.poster_path}`
                     : undefined} 
-                className="max-w-xs min-w-fit w-full mx-auto lg:mx-8 shadow-xl border-4 border-sky-300 rounded-xl" 
+                className="max-w-xs min-w-fit mx-auto lg:mx-8 shadow-xl border-4 border-sky-300 rounded-xl" 
                 alt="Poster Not Found">
                     </img>
                 <div className="flex px-4 justify-around content-center">
@@ -49,6 +50,7 @@ function MoviePage() {
             </div>
             {/* TODO : Add Cast details. */}
             {type === 'tv' && movieDetail.seasons && movieDetail.seasons.length ? <Seasons seasons={movieDetail.seasons} id={id}/> : null}
+            <Reviews type={type} id={id} />
             <Recommend type={type} id={id} />
         </>)
     }
