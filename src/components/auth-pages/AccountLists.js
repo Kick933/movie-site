@@ -1,4 +1,4 @@
-// Get faourite movies of the user.
+// Get favorite movies of the user.
 // This component also provides watchList of user
 import { useContext, useState } from 'react'
 import { Config } from '../../context/Config'
