@@ -49,9 +49,9 @@ function Trending(props) {
         <div className=" text-gray-800 dark:text-gray-300 md:px-8 overflow-y-visible">
             <p className="text-xl font-bold p-2 pl-4 border-b-2 border-gray-500">{props.find === 'trending' ? `Trending ${props.text}` : `Explore ${props.text}`}</p>
                 {/* <button className="w-8 md:w-16 text-4xl h-56 hidden text-black border-black border-2 md:h-80 my-16 sm:flex items-center justify-center opacity-0 rounded-full hover:opacity-100 z-99 bg-white absolute left-0"><AiOutlineDoubleLeft/></button> */}
-                <div className='flex gap-1 my-2 px-8 md:gap-8 md:py-10 overflow-y-visible overflow-x-scroll'>
+                <div className='flex gap-2 my-2 py-2 md:px-8 md:gap-8 overflow-y-visible overflow-x-scroll'>
                     {trending.results.map((movie,index) => <MovieCard type={props.type} movie={movie} data-index={index} key={movie.id} />)}
-                    {trending.total_pages > trending.page ? <button className='bg-gray-700 text-xl hover:text-white text-gray-300 rounded-xl grow-0 shrink-0 my-8 hover:md:scale-125 transition-all flex justify-center items-center w-36 md:w-48 md:max-h-80' onClick={() => handlePage()}>{loading ? <p>loading...</p> : <p>More...</p>}</button> : null}
+                    {trending.total_pages > trending.page ? <button className='bg-gray-700 text-xl hover:text-white text-gray-300 rounded-xl grow-0 shrink-0 my-10 md:my-8 md:hover:scale-125 transition-all flex justify-center items-center w-36 md:w-48 md:max-h-80' onClick={() => handlePage()}>{loading ? <p>loading...</p> : <p>More...</p>}</button> : null}
                 </div>
                 {/* <button className="w-8 md:w-16 text-4xl h-56 hidden text-black border-black border-2 md:h-80 my-16 sm:flex items-center justify-center opacity-0 rounded-full hover:opacity-100 z-99 bg-white absolute right-0"><AiOutlineDoubleRight/></button> */}
         </div >

@@ -12,7 +12,7 @@ function MovieCard(props) {
         const posterSM = `${config.images.secure_base_url}${config.images.poster_sizes[2]}${movie.poster_path}`
         const posterLG = `${config.images.secure_base_url}${config.images.poster_sizes[3]}${movie.poster_path}`
         return (
-                <div className='rounded-xl grow-0 shrink-0 relative contrast-125 group my-10 h-auto md:h-80 bg-white border flex flex-col w-36 md:w-48 text-gray-100 shadow-lg'>
+                <div className='rounded-xl grow-0 bg-transparent shrink-0 relative contrast-125 group  md:my-10 md:h-80 flex flex-col w-36 md:w-48 text-gray-100'>
                     <div className="bg-gray-600 group-hover:z-99 transform md:group-hover:scale-125 md:group-hover:absolute transition-all overflow-hidden flex rounded-xl w-36 md:w-48 text-gray-100 ">
                         <Link draggable='false' to={`/media/${movie.id}/${props.type}`}>
                             <img loading="lazy" draggable="false" onError={() => setText("Poster not available.")} className="h-56 md:hidden brightness-90 dark:brightness-75 w-48 rounded-xl object-fill font-bold" src={posterSM} alt={text} ></img >
@@ -24,7 +24,7 @@ function MovieCard(props) {
                         </div>
                         </Link>
                     </div>
-                    <p className='p-2 absolute left-0 right-0 -bottom-10 truncate group-hover:md:hidden transition-all rounded-md text-sm font-semibold block bg-black text-center'>{movie.name || movie.title}</p>
+                    <p className='p-2 my-1 md:my-2 left-0 right-0 -bottom-10 truncate group-hover:md:hidden transition-all rounded-md text-sm font-semibold block bg-black text-center'>{movie.name || movie.title}</p>
                     </div>
         )
     } else {
