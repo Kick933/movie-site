@@ -24,7 +24,7 @@ export default function Seasons({id, seasons}) {
                 return <div onClick={() => setSeason(i.season_number)} key={i.season_number} className='bg-white h-8 border w-6 flex justify-center items-center text-center rounded-md border-gray-300 hover:text-white active:text-white hover:bg-sky-300 active:bg-sky-400'>{i.season_number}</div>
             })}
         </div>
-        <div  onClick={hide} className='mx-auto transition-all text-sky-500 my-4 py-2 px-8 items-center justify-between text-xl font-bold flex border-2 rounded-xl w-full lg:w-11/12'>
+        <div  onClick={hide} className='mx-auto transition-all text-sky-500 my-4 py-2 px-8 items-center justify-between text-xl font-bold flex rounded-xl w-full lg:w-11/12'>
             <p>Episodes</p>
             {/* Show down arrow if episodes are hidden. Else show up */}
             {hidden ? <BiChevronDown className='animate-pulse text-3xl'/> : <BiChevronUp  className='animate-pulse text-3xl'  />}

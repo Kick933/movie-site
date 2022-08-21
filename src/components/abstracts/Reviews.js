@@ -40,7 +40,7 @@ export default function Reviews({type,id}) {
     )
     return (
         <div className='max-w-7xl w-full flex-col items-center gap-2 border my-4 lg:w-11/12 shadow-md justify-center py-4 rounded-xl flex'>
-            <div onClick={toggle} className='flex text-xl text-sky-400 font-bold justify-between md:px-8 border-2 rounded-xl lg:w-11/12 p-2 w-full'>
+            <div onClick={toggle} className='flex text-xl text-sky-400 font-bold justify-between md:px-8 rounded-xl lg:w-11/12 p-2 w-full'>
                 <p className=''>Reviews</p>
                 {hidden ? <BiChevronDown className='text-3xl animate-pulse'/> : <BiChevronUp className='text-3xl animate-pulse' />}
             </div>
