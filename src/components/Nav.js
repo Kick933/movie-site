@@ -19,7 +19,7 @@ function Nav() {
             setMenuActive(prev => !prev)
     }
     return (
-        <div className='min-h-screen relative transition-all dark:bg-black overflow-x-hidden flex justify-between items-center flex-col'>
+        <div className='min-h-screen text-xs relative lg:text-base transition-all dark:bg-black overflow-x-hidden flex justify-between items-center flex-col'>
         <nav className="h-20 relative w-full shadow-xl flex text-2xl text-sky-400 items-center">
             <ul className="flex mx-auto w-full grow-0 shrink-0 justify-between items-center h-12">
                 <li onClick={handleMenu} className="flex text-3xl group ease-in-out transition-all text-sky-400 p-2 hover:scale-125 hover:rotate-180 justify-center align-center group m-4">
