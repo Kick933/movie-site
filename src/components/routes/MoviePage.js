@@ -25,20 +25,20 @@ function MoviePage() {
         let movieName = movieDetail.name || movieDetail.title || movieDetail.original_title || movieDetail.original_name
         document.title = movieName
         return (<>
-            <div className="max-w-7xl my-12 grow-0 shrink-0 shadow-xl rounded-xl m-4 border py-16 w-full mx-auto flex flex-col lg:flex-row">
+            <div className="md:max-w-7xl w-screen my-12 grow-0 shrink-0 shadow-xl rounded-xl md:m-4 border py-16 mx-auto flex flex-col lg:flex-row">
                 <img 
                 draggable='false'
                 src={config.images ?
                     `${config.images.secure_base_url}${config.images.poster_sizes[3]}${movieDetail.poster_path}`
                     : undefined} 
-                className="max-w-xs min-w-fit mx-auto lg:mx-8 shadow-xl border-4 border-sky-300 rounded-xl" 
+                className="block w-4/5 md:w-auto md:min-w-fit md:max-w-full mx-auto lg:mx-8 shadow-xl border-4 border-sky-300 rounded-xl" 
                 alt="Poster Not Found">
                     </img>
                 <div className="flex px-4 justify-around content-center">
                     <div className="mx-4">
                         <div className='flex flex-col mt-8'>
-                            <h1 className="font-bold antialiased text-sky-400 font-sans text-4xl">{movieDetail.name || movieDetail.title || movieDetail.original_title || movieDetail.original_name}</h1>  
-                            <p className="text-lg text-gray-800">{movieDetail.tagline}</p>
+                            <h1 className="font-bold antialiased text-sky-400 font-sans text-xl lg:text-4xl">{movieDetail.name || movieDetail.title || movieDetail.original_title || movieDetail.original_name}</h1>  
+                            <p className="text-sm lg:text-lg text-gray-800">{movieDetail.tagline}</p>
                         </div>
                         <Genre data={movieDetail} />
                         <div className='flex gap-4 h-6'>
