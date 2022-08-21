@@ -24,7 +24,7 @@ function MovieCard(props) {
                         </div>
                         </Link>
                     </div>
-                    <p className='p-2 m-1 left-0 right-0 -bottom-10 truncate group-hover:md:hidden transition-all rounded-md text-sm font-semibold block bg-black text-center'>{movie.name || movie.title}</p>
+                    <p className='p-2 my-1 md:my-2 left-0 right-0 -bottom-10 truncate group-hover:md:hidden transition-all rounded-md text-sm font-semibold block bg-black text-center'>{movie.name || movie.title}</p>
                     </div>
         )
     } else {
