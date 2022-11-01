@@ -7,7 +7,7 @@ import ReviewCard from './ReviewCard'
 // TODO : Add Pagination.
 //
 
-// Provides revies for movies as well as shows
+// Provides reviews for movies as well as shows
 // Takes type ('movies' or 'tv') as first argument.
 // Takes movie/show id as second argument.
 // Return a card with reviews along with pagination.
@@ -17,7 +17,6 @@ export default function Reviews({type,id}) {
     let url = `https://api.themoviedb.org/3/${type}/${id}/reviews?api_key=${process.env.REACT_APP_KEY}&language=en-US&page=1`
     const deps = [type,id]
     const {data : reviews,loading,error} = useFetch(url,deps)
-    if(!loading) console.log(reviews)
     function toggle(){
         ref.current.classList.toggle('hidden')
         ref.current.classList.toggle('flex')
